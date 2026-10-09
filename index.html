@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Systems Critical Support · NerdyGuyGames</title>
+<meta name="description" content="Help, known fixes, system requirements and contact for Systems Critical, by NerdyGuyGames.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #090c11;
+    --panel: #111720;
+    --panel-2: #161e29;
+    --line: #243042;
+    --text: #dbe3ec;
+    --dim: #8f9caf;
+    --red: #e22c2c;
+    --red-soft: rgba(226, 44, 44, 0.14);
+    --cyan: #4fd1e8;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  a { color: var(--cyan); }
+  a:hover { color: #8fe4f2; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+  header.top {
+    border-bottom: 1px solid var(--line);
+    background: rgba(9, 12, 17, 0.92);
+    position: sticky; top: 0; z-index: 5;
+    backdrop-filter: blur(6px);
+  }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 58px; gap: 16px; }
+  .studio { font-family: Orbitron, sans-serif; font-weight: 800; letter-spacing: 0.04em; color: var(--text); text-decoration: none; font-size: 15px; }
+  .studio span { color: var(--red); }
+  nav a { color: var(--dim); text-decoration: none; font-size: 14px; margin-left: 18px; }
+  nav a:hover { color: var(--text); }
+
+  .hero {
+    position: relative;
+    background: #000 url("assets/hero.jpg") 70% 40% / cover no-repeat;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,7,10,.88) 0%, rgba(5,7,10,.55) 55%, rgba(5,7,10,.15) 100%); }
+  .hero .wrap { position: relative; z-index: 1; padding-top: 88px; padding-bottom: 88px; }
+  .eyebrow { font-family: Orbitron, sans-serif; font-size: 12px; letter-spacing: 0.22em; color: var(--red); font-weight: 600; }
+  h1 { font-family: Orbitron, sans-serif; font-weight: 800; font-size: clamp(30px, 6vw, 52px); line-height: 1.05; margin: 10px 0 14px; letter-spacing: 0.02em; }
+  .hero p { max-width: 520px; color: #c5ceda; margin: 0 0 26px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-block; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; }
+  .btn.primary { background: var(--red); color: #fff; }
+  .btn.primary:hover { background: #f03d3d; color: #fff; }
+  .btn.ghost { border: 1px solid #3a4a60; color: var(--text); background: rgba(17, 23, 32, 0.7); }
+  .btn.ghost:hover { border-color: var(--cyan); color: var(--text); }
+
+  section { padding: 56px 0 8px; }
+  h2 { font-family: Orbitron, sans-serif; font-size: 22px; letter-spacing: 0.03em; margin: 0 0 6px; }
+  .lead { color: var(--dim); margin: 0 0 24px; }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; counter-reset: s; }
+  .step { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+  .step::before { counter-increment: s; content: counter(s); display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--red-soft); color: var(--red); font-weight: 700; margin-bottom: 10px; }
+  .step h3 { margin: 0 0 6px; font-size: 16px; }
+  .step p { margin: 0; color: var(--dim); font-size: 14.5px; }
+
+  .path { display: block; margin-top: 10px; padding: 10px 12px; background: #0b1017; border: 1px solid var(--line); border-radius: 8px; font: 13px/1.5 Consolas, "Cascadia Mono", monospace; color: #cfe9ef; overflow-wrap: anywhere; }
+
+  details { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 10px; }
+  summary { cursor: pointer; padding: 16px 18px; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--red); font-weight: 700; }
+  details[open] summary::after { content: "\2013"; }
+  details .body { padding: 0 18px 16px; color: #c3ccd8; }
+  details .body ul, details .body ol { margin: 6px 0 0; padding-left: 20px; }
+  details .body li { margin: 4px 0; }
+  kbd { font: 12.5px Consolas, monospace; background: var(--panel-2); border: 1px solid #33425a; border-bottom-width: 2px; border-radius: 5px; padding: 1px 6px; color: var(--text); white-space: nowrap; }
+
+  .shot { margin: 28px 0 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+  .shot img { display: block; width: 100%; height: auto; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; background: var(--panel); font-size: 14.5px; }
+  th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--dim); font-weight: 600; background: var(--panel-2); }
+  tr:last-child td { border-bottom: 0; }
+  td:first-child { color: var(--dim); white-space: nowrap; }
+
+  .controls { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 28px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 18px; }
+  .controls div { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+  .controls span { color: #c3ccd8; }
+
+  .note { background: var(--panel); border-left: 3px solid var(--red); border-radius: 0 var(--radius) var(--radius) 0; padding: 14px 18px; color: #c3ccd8; }
+
+  footer { margin-top: 64px; border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--dim); font-size: 13.5px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+  @media (max-width: 760px) {
+    nav { display: none; }
+    .steps { grid-template-columns: 1fr; }
+    .controls { grid-template-columns: 1fr; }
+    .hero .wrap { padding-top: 64px; padding-bottom: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="studio" href="#">NERDY<span>GUY</span>GAMES</a>
+    <nav>
+      <a href="#help">Get help</a>
+      <a href="#faq">Fixes</a>
+      <a href="#specs">Requirements</a>
+      <a href="#controls">Controls</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">SUPPORT · EARLY ACCESS</div>
+    <h1>Systems Critical</h1>
+    <p>Something went wrong aboard? Tell us. Every report is read, and the fixes for the most common problems are below.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://steamcommunity.com/app/5415760/discussions/">Ask on the Steam forums</a>
+      <a class="btn ghost" href="https://store.steampowered.com/app/5415760/">Store page</a>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section id="help">
+    <h2>Get help</h2>
+    <p class="lead">Support runs through the game's Steam discussions, so answers help everyone who hits the same problem.</p>
+    <div class="steps">
+      <div class="step">
+        <h3>Check the fixes</h3>
+        <p>Most problems (joining friends, voice chat, performance) have a fix <a href="#faq">further down this page</a>.</p>
+      </div>
+      <div class="step">
+        <h3>Post in Bug Reports</h3>
+        <p>Open the <a href="https://steamcommunity.com/app/5415760/discussions/">Steam discussions</a>. Say what happened, the ship size, and whether you hosted or joined.</p>
+      </div>
+      <div class="step">
+        <h3>Attach your log</h3>
+        <p>After a crash or a bug, attach your <strong>Player.log</strong>. It tells us what the game was doing.</p>
+      </div>
+    </div>
+    <p class="lead" style="margin:22px 0 0">Find the log: press <kbd>Win</kbd> + <kbd>R</kbd>, paste this, press Enter.</p>
+    <code class="path">%USERPROFILE%\AppData\LocalLow\NerdyGuyGames\SystemsCritical</code>
+    <p class="lead" style="margin:10px 0 0">Send <strong>Player.log</strong>, plus <strong>Player-prev.log</strong> if the game crashed and you restarted it. Upload them to a file host and post the link.</p>
+  </section>
+
+  <section id="faq">
+    <h2>Common fixes</h2>
+    <p class="lead">Tap a problem to open it.</p>
+
+    <details>
+      <summary>My friend's invite doesn't work</summary>
+      <div class="body">
+        <ol>
+          <li><strong>Start the game first</strong>, then accept the invite from the Steam overlay (<kbd>Shift</kbd> + <kbd>Tab</kbd>). Joining from an invite while the game is closed isn't supported yet.</li>
+          <li>The host opens a crew lobby from the main menu, then invites from the overlay's friends list.</li>
+          <li>Everyone needs the same version: let Steam finish any update before playing.</li>
+          <li>Still stuck? Restart Steam on both PCs and try again.</li>
+        </ol>
+      </div>
+    </details>
+
+    <details>
+      <summary>Nobody can hear me / I can't hear anyone</summary>
+      <div class="body">
+        <ul>
+          <li>Hold <kbd>V</kbd> to talk to robots near you, or hold <kbd>T</kbd> to talk to the whole crew over ship comms.</li>
+          <li>Open <strong>Settings → Voice</strong>, pick the right microphone, and turn on <strong>Hear yourself (mic test)</strong> to check it.</li>
+          <li>Proximity voice fades with distance and is muffled through walls and shut doors. That's on purpose.</li>
+          <li>Check that Windows allows apps to use your microphone (<strong>Settings → Privacy → Microphone</strong>).</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>The game runs slowly</summary>
+      <div class="body">
+        <ul>
+          <li>Lower <strong>Settings → Video → Quality</strong>, and pick a lower resolution.</li>
+          <li>Larger ships are heavier. Try a Small or Medium ship.</li>
+          <li>Update your graphics driver (NVIDIA, AMD or Intel's own site).</li>
+          <li>Close browsers and recording software while you play.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>The game won't start or crashes on launch</summary>
+      <div class="body">
+        <ol>
+          <li>In Steam: right-click Systems Critical → <strong>Properties → Installed Files → Verify integrity of game files</strong>.</li>
+          <li>Update your graphics driver and Windows.</li>
+          <li>Make sure your PC meets the <a href="#specs">minimum requirements</a>: Windows 10 64-bit and DirectX 11.</li>
+          <li>Still crashing? Post in Bug Reports with your <a href="#help">log files</a>.</li>
+        </ol>
+      </div>
+    </details>
+
+    <details>
+      <summary>Something looks or plays wrong</summary>
+      <div class="body">
+        Systems Critical is in Early Access and changes often. Post what you saw in the Steam discussions, with a screenshot (<kbd>F12</kbd> in Steam) if you can, plus the ship size and whether you were the host.
+      </div>
+    </details>
+
+    <details>
+      <summary>Refunds</summary>
+      <div class="body">
+        Refunds are handled by Steam, not by us: <a href="https://help.steampowered.com/">help.steampowered.com</a>. Steam usually refunds games requested within 14 days of purchase with under 2 hours played.
+      </div>
+    </details>
+
+    <figure class="shot"><img src="assets/peek.jpg" alt="The alien peeking around a doorway in a dark corridor, lit by a robot's face lamp" loading="lazy"></figure>
+  </section>
+
+  <section id="specs">
+    <h2>System requirements</h2>
+    <p class="lead">Windows only. Online play needs Steam.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th></th><th>Minimum</th><th>Recommended</th></tr></thead>
+        <tbody>
+          <tr><td>OS</td><td>Windows 10 64-bit</td><td>Windows 10/11 64-bit</td></tr>
+          <tr><td>Processor</td><td>Intel Core i5-8400 / AMD Ryzen 5 2600</td><td>Intel Core i5-10400 / AMD Ryzen 7 3700X</td></tr>
+          <tr><td>Memory</td><td>8 GB RAM</td><td>16 GB RAM</td></tr>
+          <tr><td>Graphics</td><td>NVIDIA GTX 1060 6 GB / AMD RX 580 8 GB</td><td>NVIDIA RTX 3060 / AMD RX 6600 XT</td></tr>
+          <tr><td>DirectX</td><td>Version 11</td><td>Version 11</td></tr>
+          <tr><td>Network</td><td>Broadband internet</td><td>Broadband internet</td></tr>
+          <tr><td>Storage</td><td>4 GB</td><td>4 GB</td></tr>
+          <tr><td>Target</td><td>1080p, low settings</td><td>1080p, high settings</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="controls">
+    <h2>Controls</h2>
+    <p class="lead">Keyboard and mouse. Controllers aren't supported yet.</p>
+    <div class="controls">
+      <div><span>Move</span><kbd>W A S D</kbd></div>
+      <div><span>Jump</span><kbd>Space</kbd></div>
+      <div><span>Sprint</span><kbd>Shift</kbd></div>
+      <div><span>Crouch</span><kbd>Ctrl</kbd></div>
+      <div><span>Punch with that hand</span><kbd>Left / Right click</kbd></div>
+      <div><span>Grab (both = two-handed)</span><kbd>Hold Left / Right</kbd></div>
+      <div><span>Interact / equip</span><kbd>E</kbd></div>
+      <div><span>Fire equipped tool</span><kbd>F</kbd></div>
+      <div><span>Drop</span><kbd>X</kbd></div>
+      <div><span>Inventory</span><kbd>Scroll / 1–5</kbd></div>
+      <div><span>Ship map (draw on it)</span><kbd>Tab</kbd></div>
+      <div><span>First / third person</span><kbd>F5</kbd></div>
+      <div><span>Talk nearby</span><kbd>Hold V</kbd></div>
+      <div><span>Ship comms (whole crew)</span><kbd>Hold T</kbd></div>
+      <div><span>Expressions</span><kbd>G</kbd></div>
+      <div><span>Pause / settings</span><kbd>Esc</kbd></div>
+    </div>
+    <figure class="shot"><img src="assets/pods.jpg" alt="A robot standing in front of five cryo pods in the ship's safe room" loading="lazy"></figure>
+  </section>
+
+  <section id="privacy">
+    <h2>Privacy</h2>
+    <div class="note">
+      <p style="margin-top:0">Systems Critical doesn't ask for, collect or sell your personal information.</p>
+      <ul style="margin:0;padding-left:20px">
+        <li>Settings and progress are saved on your own PC.</li>
+        <li>Multiplayer and voice chat run through Steam's networking, directly between the players in a lobby. Voice isn't recorded or stored.</li>
+        <li>The game uses your Steam ID only to load your own local profile and to show your name to your crew.</li>
+        <li>The Unity engine may send anonymous technical data, such as hardware details and crash reports, to Unity Technologies.</li>
+      </ul>
+      <p style="margin-bottom:0">Questions? Ask in the <a href="https://steamcommunity.com/app/5415760/discussions/">Steam discussions</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 NerdyGuyGames. All rights reserved.</span>
+    <span>Systems Critical is in Early Access on Steam.</span>
+  </div>
+</footer>
+
+</body>
+</html>
